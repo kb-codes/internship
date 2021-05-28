@@ -1,4 +1,7 @@
 
+
+<body class="hold-transition sidebar-mini">
+
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -33,32 +36,44 @@
               <a href="#" class="d-block">Alexander Pierce</a>
             </div>
           </div>
-    
-         
+
+          <?php $page=basename($_SERVER['PHP_SELF'])?>
+       
     
           <!-- Sidebar Menu -->
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
+
+           
+         
               
               <li class="nav-item menu-open">
-                
+              
                 <a href="#" class="nav-link">
                   <p>
                     Category
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
                 
-                  <li class="nav-item">
-                    <a href="listcategory.php" class="nav-link deactive">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Category list</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
+                <ul class="nav nav-treeview">
+                    
+                    <li class="<?php if($page == 'listcategory.php'): echo 'nav-link active'; endif; ?>"> 
+
+                      <a href="listcategory.php" class="nav-link">
+
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Category list</p>
+                      </a>
+                    
+                    </li>
+
+
+                
+                  <li class="<?php if($page == 'addcategory.php'): echo 'nav-link active'; endif; ?>">
+
                     <a href="addcategory.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Add category</p>
@@ -79,13 +94,14 @@
                   </a>
                   <ul class="nav nav-treeview">
                   
-                    <li class="nav-item">
+                    <li class="<?php if($page == 'Listquestion.php'): echo 'nav-link active'; endif; ?>">
+
                       <a href="Listquestion.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Question list</p>
                       </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="<?php if($page == 'Addquestion.php'): echo 'nav-link active'; endif; ?>">
                       <a href="Addquestion.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Add Question</p>
