@@ -63,11 +63,10 @@
             <div class="card-header">
               
                   <h2 class="float-left">Category List</h2>
-                     
-                  <button type="button" style="margin-right:300px;" class="btn btn-light float-right" title="Collapse">
-               
-                      <a href="addcategory.php"> <i class="fas fa-plus text-dark">Add Category</i></a>
-                  </button>
+                  
+                  <a href="addcategory.php">  <button type="button" style="margin-right:300px;" 
+                  class="btn btn-light float-right" title="Collapse"> <i class="fas fa-plus text-dark">Add Category</i> </button> </a>
+  
         
             </div>
           

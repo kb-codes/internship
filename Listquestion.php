@@ -72,9 +72,9 @@
                      <div class="card-tools">
                    </div>
                   
-                  <button type="button"  value="" class="btn btn-light float-right" title="Collapse">
-                      <a href="Addquestion.php"> <i class="fas fa-plus text-dark">Add Question</i></a>
-                  </button>
+                  <a href="Addquestion.php"> <button type="button"  value="" class="btn btn-light float-right" title="Collapse">
+                  <i class="fas fa-plus text-dark">Add Question</i> </button> </a>
+                  
         
             </div>
 
