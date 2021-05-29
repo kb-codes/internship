@@ -2,7 +2,10 @@
 
   //DATABASE CONNECTION :
   include "config.php";
-
+  if(!isset($_SESSION['uname']))
+  {
+    header('location:login.php'); 
+  }
   $query="SELECT * FROM `questions`";
       
   $select=mysqli_query($con,$query);

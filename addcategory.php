@@ -1,3 +1,12 @@
+<?php
+  include "config.php";
+  if(!isset($_SESSION['uname']))
+  {
+    header('location:login.php'); 
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
