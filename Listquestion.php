@@ -115,10 +115,8 @@
                     
                     <td class="text-left py-0 align-middle">
                       <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                        <?php 
-                             include("popup.php");
-                        ?>
+                     
+                      <a href="./api/deleteQuestion.php?id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                       </div>
                     </td>
                     <?php
