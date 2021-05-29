@@ -1,5 +1,3 @@
-
-
 <body class="hold-transition sidebar-mini">
 
       <!-- Navbar -->
@@ -13,7 +11,7 @@
 
         </ul>
 
-          <a href="#" class="">
+          <a href="logout.php" class="">
             <p class="float-right">Log Out</p>
           </a>
 
