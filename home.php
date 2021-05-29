@@ -53,6 +53,7 @@
     </section>
 
     <!-- Main content -->
+    hello world
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

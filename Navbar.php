@@ -50,19 +50,21 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
+              
+                <li class="nav-item">
+                      <a href="home.php" class="nav-link active">
+                          <p>
+                            Dashboard
+                            <i class="fas fa-angle"></i>
+                          </p>
+                      </a>
 
-              <li class="nav-item menu-open">
-                    <a href="home.php" class="nav-link">
-                        <p>
-                          Dashboard
-                          <i class="fas fa-angle"></i>
-                        </p>
-                    </a>
-              </li>
+                </li>
+              
 
               <li class="nav-item menu-open">
               
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link"> 
                   <p>
                     Category
                     <i class="fas fa-angle-left right"></i>
@@ -93,7 +95,7 @@
                 </ul>
               </li>
     
-              <li class="nav-item menu-open">
+              <li class="nav-item  menu-open">
                   <a href="#" class="nav-link">
                     
                     <p>

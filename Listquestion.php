@@ -17,7 +17,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | List category
+  <title>Gk | List category
 
   </title>
 
@@ -53,7 +53,7 @@
          
           <div class="col-sm-6">
             <ol class="breadcrumb float-left">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="home.php">Home</a></li>
               <li class="breadcrumb-item active">Question List</li>
             </ol>
           </div>  

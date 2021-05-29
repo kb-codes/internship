@@ -43,7 +43,7 @@
          
           <div class="col-sm-6">
             <ol class="breadcrumb float-left">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="home.php">Home</a></li>
               
               <li class="breadcrumb-item active">Add Category</li>
             </ol>
