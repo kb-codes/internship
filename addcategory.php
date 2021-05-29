@@ -66,13 +66,18 @@
             <form method="post">
             <div class="card-body">
               <div class="form-group">
-                <label for="inputName">Project Name</label>
-                <input type="text" name="project_name" id="project_name" class="form-control">
+                <label for="inputName">Category Name</label>
+                <input type="text" value="<?php if(isset($_GET['category'])){ echo $_GET['category']; } ?>" name="project_name" id="project_name" class="form-control">
               </div>
-                
+              <?php 
+              if(isset($_GET['id']))
+              {
+                  echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
+              }
+              ?>
                 <button type="submit"  value="add" class="btn btn-success float-left" data-toggle="modal" title="Collapse">
                   <i class="fas fa-null">Submit</i>
-                  </button>
+                </button>
             </form>
                        <div class="modal fade" id="modal-default">
                             <div class ="modal-dialog">
@@ -142,11 +147,11 @@ $('form').on('submit', function (e) {
     url: './api/addCategory.php',
     data: $('form').serialize(),
     success: function (res) {
-       
         var data = JSON.parse(res);
         
         if(data.status == true) {
           $('#modal-default').modal({'show' : true});
+          window.location.href = 'listcategory.php';
         } else {
           alert("Somethig went wrong !");
         }

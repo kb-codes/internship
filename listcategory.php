@@ -93,11 +93,8 @@
                       <div class="btn-group btn-group-sm">
 
                      
-                     <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                        <?php
-                             include("popup.php");
-                       ?>
-
+                     <a href="./addcategory.php?category=<?php echo $row['category_name'] ?>&id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                     <a href="./api/deleteCategory.php?id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
 
                         </div>
                     </td>
@@ -133,6 +130,8 @@
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+
 </body>
 </html>
 
