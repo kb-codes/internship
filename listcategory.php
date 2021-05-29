@@ -64,9 +64,9 @@
               
                   <h2 class="float-left">Category List</h2>
                      
-                  <button type="button"  value="" class="btn btn-success float-right" title="Collapse">
+                  <button type="button" style="margin-right:300px;" class="btn btn-light float-right" title="Collapse">
                
-                      <a href="addcategory.php"> <i class="fas fa-plus">Add Category</i></a>
+                      <a href="addcategory.php"> <i class="fas fa-plus text-dark">Add Category</i></a>
                   </button>
         
             </div>
@@ -97,7 +97,7 @@
                       <div class="btn-group btn-group-sm">
 
                      
-                     <a href="./addcategory.php?category=<?php echo $row['category_name'] ?>&id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                     <a href="./update.php?category=<?php echo $row['category_name'] ?>&id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
                      <a href="./api/deleteCategory.php?id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
 
                         </div>

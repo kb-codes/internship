@@ -72,8 +72,8 @@
                      <div class="card-tools">
                    </div>
                   
-                  <button type="button"  value="" class="btn btn-success float-right" title="Collapse">
-                      <a href="Addquestion.php"> <i class="fas fa-plus">Add Question</i></a>
+                  <button type="button"  value="" class="btn btn-light float-right" title="Collapse">
+                      <a href="Addquestion.php"> <i class="fas fa-plus text-dark">Add Question</i></a>
                   </button>
         
             </div>
