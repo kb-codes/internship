@@ -71,21 +71,19 @@
                 
                 <ul class="nav nav-treeview">
                     
-                    <li class="<?php if($page == 'listcategory.php'): echo 'nav-link active'; endif; ?>"> 
-
-                      <a href="listcategory.php" class="nav-link">
-
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Category list</p>
-                      </a>
+                    <li class=" nav-item">
                     
+                    <a href="listcategory.php" class="<?php if($page == 'listcategory.php'): echo 'nav-link active'; endif; ?> nav-link"> 
+
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Category list</p>
+                      </a>
                     </li>
+                    
+                    <li class=" nav-item">
 
+                    <a href="addcategory.php" class="<?php if($page == 'addcategory.php'): echo 'nav-link active'; endif; ?> nav-link">
 
-                
-                  <li class="<?php if($page == 'addcategory.php'): echo 'nav-link active'; endif; ?>">
-
-                    <a href="addcategory.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Add category</p>
                     </a>
@@ -105,15 +103,16 @@
                   </a>
                   <ul class="nav nav-treeview">
                   
-                    <li class="<?php if($page == 'Listquestion.php'): echo 'nav-link active'; endif; ?>">
+                    <li class="nav-item">
 
-                      <a href="Listquestion.php" class="nav-link">
+                      <a href="Listquestion.php" class="<?php if($page == 'Listquestion.php'): echo 'nav-link active'; endif; ?> nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Question list</p>
                       </a>
                     </li>
-                    <li class="<?php if($page == 'Addquestion.php'): echo 'nav-link active'; endif; ?>">
-                      <a href="Addquestion.php" class="nav-link">
+
+                    <li class="nav-item">
+                      <a href="Addquestion.php"  class="<?php if($page == 'Addquestion.php'): echo 'nav-link active'; endif; ?> nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Add Question</p>
                       </a>
