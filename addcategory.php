@@ -84,7 +84,7 @@
                   echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
               }
               ?>
-                <button type="submit"  value="add" class="btn btn-success float-left" data-toggle="modal" title="Collapse">
+                <button type="submit"  value="add" class="btn btn-success float-left" data-target="#modal-default" data-toggle="modal" title="Collapse">
                   <i class="fas fa-null">Submit</i>
                 </button>
             </form>

@@ -124,29 +124,32 @@
                             
                                 
 
-                                <button type="submit" style="margin-left: -120px" class="btn btn-success float-center" data-toggle="modal" title="Collapse">
+                                <button type="submit" style="margin-left: -120px" class="btn btn-success float-center" data-toggle="modal-default" title="Collapse">
                                     <i class="fas fa-null">Submit</i>
                                 </button>
-                            </form> 
-                                    <div class="modal fade" id="modal-default">
-                                    <div class ="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title">Data Added successfully</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        </div>
-                                        <div class="modal-footer justify-content-right">
+
+                                        <div class="modal fade" id="modal-default">
+                                          <div class ="modal-dialog">
+                                              <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title">Data Added successfully</h5>
+                                                
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">×</span>
+                                                    </button>
+                                                 </div>
+                                                <div class="modal-footer justify-content-right">
                                         
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal"> OK</button>
-                                        </div>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                    </div>
-                                    <!-- /.modal-dialog -->
-                                </div>                           
-                                            
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal"> OK</button>
+
+                                                </div>
+                                              </div>
+
+                                            <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>                           
+                                                
                         
                                 <button type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
                                     <i class="fas fa-null" >Cancel</i>
@@ -158,7 +161,10 @@
                         </div>
                         
 
-                    </div>
+                      </div>
+
+                    </form> 
+                                    
 
                 </div>
 

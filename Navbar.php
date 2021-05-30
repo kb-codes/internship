@@ -52,7 +52,7 @@
                    with font-awesome or any other icon font library -->
               
                 <li class="nav-item">
-                      <a href="home.php" class="nav-link active">
+                      <a href="home.php" class="nav-link <?php if($page == 'home.php'): echo 'active'; endif; ?>">
                           <p>
                             Dashboard
                             <i class="fas fa-angle"></i>
@@ -62,7 +62,7 @@
                 </li>
               
 
-              <li class="nav-item menu-open">
+              <li class="nav-item <?php if($page == 'listcategory.php' OR $page == 'addcategory.php'): echo 'menu-open'; endif; ?>">
               
                 <a href="#" class="nav-link"> 
                   <p>
@@ -95,7 +95,7 @@
                 </ul>
               </li>
     
-              <li class="nav-item  menu-open">
+              <li class="nav-item <?php if($page == 'Listquestion.php' OR $page == 'Addquestion.php'): echo 'menu-open'; endif; ?>">
                   <a href="#" class="nav-link">
                     
                     <p>
