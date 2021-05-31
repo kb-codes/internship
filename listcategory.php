@@ -96,10 +96,10 @@
 											<div class="btn-group btn-group-sm">
 
 
-										 <a href="./update.php?category=<?php echo $row['category_name'] ?>&id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+										 <a href="./updateCategory.php?category=<?php echo $row['category_name'] ?>&id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 										 <a href="./api/deleteCategory.php?id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-
-												</div>
+													
+											</div>
 										</td>
 										<?php
 									}
