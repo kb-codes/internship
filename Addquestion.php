@@ -58,14 +58,14 @@
                    <div class="card-header">    
                        <h2>Add Question </h2> 
                    </div>
-                   <form>
+                   <form name="myForm">
                     <div class="row card-body">
                     
                         
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputStatus">Category</label>
-                                <select id="inputStatus" name="category" class="form-control custom-select">
+                                <select id="inputStatus" name="category" id="category" class="form-control custom-select">
                                     <option selected disabled>Select Category</option>
                                     <?php 
                                         include "config.php";
@@ -126,29 +126,7 @@
 
                                 <button type="submit" style="margin-left: -120px" class="btn btn-success float-center" data-toggle="modal-default" title="Collapse">
                                     <i class="fas fa-null">Submit</i>
-                                </button>
-
-                                        <div class="modal fade" id="modal-default">
-                                          <div class ="modal-dialog">
-                                              <div class="modal-content">
-                                                 <div class="modal-header">
-                                                     <h5 class="modal-title">Data Added successfully</h5>
-                                                
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                         <span aria-hidden="true">×</span>
-                                                    </button>
-                                                 </div>
-                                                <div class="modal-footer justify-content-right">
-                                        
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal"> OK</button>
-
-                                                </div>
-                                              </div>
-
-                                            <!-- /.modal-content -->
-                                            </div>
-                                            <!-- /.modal-dialog -->
-                                        </div>                           
+                                </button>                          
                                                 
                         
                                 <button type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
@@ -196,23 +174,41 @@
         $(function () {
 
         $('form').on('submit', function (e) {
+            
             e.preventDefault();
-            $.ajax({
-                type: 'post',
-                url: './api/addQuestion.php',
-                data: $('form').serialize(),
-                success: function (res) {
-                    var data = JSON.parse(res);
-                    
-                    if(data.status == true) {
-                   // $('#modal-default').modal({'show' : true});
-                    alert("Question added successfully");
-                    window.location.href = 'Addquestion.php';
-                    } else {
-                    alert("Something went wrong !");
+            var a = document.forms["myForm"]["category"].value;
+            var b = document.forms["myForm"]["question"].value;
+            var c = document.forms["myForm"]["op1"].value;
+            var d = document.forms["myForm"]["op2"].value;
+            var e = document.forms["myForm"]["op3"].value;
+            var f = document.forms["myForm"]["op4"].value;
+            var g = document.forms["myForm"]["ans"].value;
+            if (b == "",c=="",d=="",e=="",f=="") {
+                
+                alert("All fields must be filled out !");
+                return false;
+            }
+            else
+            {
+                
+                $.ajax({
+                    type: 'post',
+                    url: './api/addQuestion.php',
+                    data: $('form').serialize(),
+                    success: function (res) {
+                        var data = JSON.parse(res);
+                        
+                        if(data.status == true) {
+                    // $('#modal-default').modal({'show' : true});
+                        alert("Question added successfully");
+                        window.location.href = 'Addquestion.php';
+                        } else {
+                        alert("Something went wrong !");
+                        }
                     }
-                }
-            });
+                });
+            }
+            
 
             });
 

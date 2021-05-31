@@ -72,7 +72,7 @@
                   
                   
             </div>
-            <form method="post">
+            <form method="post" name="myForm">
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Category Name</label>
@@ -84,28 +84,10 @@
                   echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
               }
               ?>
-                <button type="submit"  value="add" class="btn btn-success float-left" data-target="#modal-default" data-toggle="modal" title="Collapse">
+                <button type="submit"  value="add" class="btn btn-success float-left" data-toggle="modal" title="Collapse">
                   <i class="fas fa-null">Submit</i>
                 </button>
-            </form>
-                       <div class="modal fade" id="modal-default">
-                            <div class ="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title">Data Added successfully</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                  </button>
-                                  </div>
-                                <div class="modal-footer justify-content-right">
-                                  
-                                  <button type="button" class="btn btn-primary" data-dismiss="modal"> OK</button>
-                                </div>
-                              </div>
-                              <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>                     
+            </form>                   
                  
                 <button type="button" style="margin-left: 10px" value="add" class="btn btn float-left" title="Collapse">
                 <i class="fas fa-null" >Cancel</i>
@@ -148,24 +130,33 @@
 $(function () {
 
 $('form').on('submit', function (e) {
+  var x = document.forms["myForm"]["project_name"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  else
+  {
+      $.ajax({
+      type: 'post',
+      url: './api/addCategory.php',
+      data: $('form').serialize(),
+        success: function (res) {
+            var data = JSON.parse(res);
+            
+            if(data.status == true) {
+              alert("Category added successfully !");
+              window.location.href = 'listcategory.php';
+            } else {
+              alert("Somethig went wrong !");
+            }
+        }
+      });
+  }
   
   e.preventDefault();
 
-  $.ajax({
-    type: 'post',
-    url: './api/addCategory.php',
-    data: $('form').serialize(),
-    success: function (res) {
-        var data = JSON.parse(res);
-        
-        if(data.status == true) {
-          $('#modal-default').modal({'show' : true});
-          window.location.href = 'listcategory.php';
-        } else {
-          alert("Somethig went wrong !");
-        }
-    }
-  });
+  
 
 });
 

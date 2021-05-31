@@ -81,7 +81,7 @@
                   
                   
             </div>
-            <form method="post">
+            <form method="post" name="myForm">
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Category Name</label>
@@ -134,25 +134,32 @@
 $(function () {
 
 $('form').on('submit', function (e) {
-  
-  e.preventDefault();
+  var x = document.forms["myForm"]["project_name"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  else
+  {
+    e.preventDefault();
 
-  $.ajax({
-    type: 'post',
-    url: './api/addCategory.php',
-    data: $('form').serialize(),
-    success: function (res) {
-        var data = JSON.parse(res);
-        
-        if(data.status == true) {
-          alert("Category change successfully");
+    $.ajax({
+      type: 'post',
+      url: './api/addCategory.php',
+      data: $('form').serialize(),
+      success: function (res) {
+          var data = JSON.parse(res);
+          
+          if(data.status == true) {
+            alert("Category change successfully");
 
-          window.location.href = 'listcategory.php';
-        } else {
-          alert("Somethig went wrong !");
-        }
-    }
-  });
+            window.location.href = 'listcategory.php';
+          } else {
+            alert("Somethig went wrong !");
+          }
+      }
+    });
+  }
 
 });
 

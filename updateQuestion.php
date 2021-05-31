@@ -85,7 +85,11 @@
                                         {
                                             while($row = mysqli_fetch_array($select))
                                             {
-                                                echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
+                                                if($fetch['category'] == $row['id']) {
+                                                    echo "<option value='".$row['id']."' selected>".$row['category_name']."</option>";
+                                                } else {
+                                                    echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
+                                                }
                                             }
                                         }
 
@@ -122,10 +126,10 @@
                                 <label for="inputStatus">Answer</label>
                                 <select id="inputStatus" name="ans" class="form-control custom-select">
                                     <option selected disabled>Select answer</option>
-                                    <option>Option A</option>
-                                    <option>Option B</option>
-                                    <option>Option C</option>
-                                    <option>Option D</option>
+                                    <option <?php if($fetch['ans'] == "Option A") { echo "selected"; } ?>>Option A</option>
+                                    <option <?php if($fetch['ans'] == "Option B") { echo "selected"; } ?>>Option B</option>
+                                    <option <?php if($fetch['ans'] == "Option C") { echo "selected"; } ?>>Option C</option>
+                                    <option <?php if($fetch['ans'] == "Option D") { echo "selected"; } ?>>Option D</option>
                                 </select>
                             </div>
 
