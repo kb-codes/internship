@@ -1,7 +1,7 @@
 <?php
 //DATABASE CONNECTION :
 include "../config.php";
-
+echo "yes";
     if(isset($_GET["id"]))
     {
         $id = $_GET['id'];

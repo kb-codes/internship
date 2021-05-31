@@ -108,7 +108,13 @@
                   echo "<tr>";
                   echo "<td>".$row['id']."</td>";
                   echo "<td>".$row['question']."</td>";
-                  echo "<td>".$row['category']."</td>";
+                  $id = $row['category'];
+                  $cat="SELECT * FROM `category` WHERE id='$id'";
+      
+                  $sel=mysqli_query($con,$cat);
+                  $data = mysqli_fetch_array($sel);  
+
+                  echo "<td>".$data['category_name']."</td>";
                   echo "<td>".$row['op1']."</td>";
                   echo "<td>".$row['op2']."</td>";
                   echo "<td>".$row['op3']."</td>";
@@ -118,35 +124,12 @@
                     
                     <td class="text-left py-0 align-middle">
                       <div class="btn-group btn-group-sm">
-                     
-                      <a href="./api/deleteQuestion.php?id=<?php echo $row['id'] ?>" class="btn btn-danger"  data-target="#modal-default" data-toggle="modal">
-                      <i class="fas fa-trash"></i></a>
+                      <a href="./updateQuestion.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+												
+												<a href="./api/deleteQuestion.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
+												<i class="fas fa-trash"></i></a>
 
-                      <div class="modal fade" id="modal-default">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 class="modal-title">Delete modal </h4>
-																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																	<span aria-hidden="true">&times;</span>
-																</button>
-															</div>
-															<div class="modal-body">
-																<p>Are you sure want to Delete&hellip;</p>
-															</div>
-															<div class="modal-footer justify-content-between">
-																<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-																<a href="./api/deleteQuestion.php?id=<?php echo $row['id'] ?>"><button type="button" class="btn btn-primary"> Delete</button> </a>
-															</div>
-														</div>
-														<!-- /.modal-content -->
-													</div>
-													<!-- /.modal-dialog -->
-												</div>
-												<!-- /.modal -->
-
-
-                      </div>
+                     </div>
                     </td>
                     <?php
                   }

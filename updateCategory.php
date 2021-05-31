@@ -4,6 +4,14 @@
   {
     header('location:login.php'); 
   }
+  if(isset($_GET['id']))
+  {
+    $id = $_GET['id'];
+    $query="SELECT * FROM `category` WHERE id='$id'";
+
+	  $sel=mysqli_query($con,$query);
+    $fetch = mysqli_fetch_array($sel);
+  }
 
 ?>
 
@@ -26,6 +34,7 @@
 
   
 </head>
+
 
 
 <body class="hold-transition sidebar-mini">
@@ -76,36 +85,13 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Category Name</label>
-                <input type="text" value="<?php if(isset($_GET['category'])){ echo $_GET['category']; } ?>" name="project_name" id="project_name" class="form-control">
+                <input type="text" value="<?php echo $fetch['category_name']; ?>" name="project_name" id="project_name" class="form-control">
+                <input type="hidden" value="<?php echo $fetch['id']; ?>" name="token">
               </div>
-              <?php 
-              if(isset($_GET['id']))
-              {
-                  echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
-              }
-              ?>
                 <button type="submit"  value="add" class="btn btn-success float-left" data-toggle="modal" title="Collapse">
                   <i class="fas fa-null">Submit</i>
                 </button>
-            </form>
-                       <div class="modal fade" id="modal-default">
-                            <div class ="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title">Data Added successfully</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                  </button>
-                                  </div>
-                                <div class="modal-footer justify-content-right">
-                                  
-                                  <button type="button" class="btn btn-primary" data-dismiss="modal"> OK</button>
-                                </div>
-                              </div>
-                              <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>                     
+            </form>                 
                  
                 <button type="button" style="margin-left: 10px" value="add" class="btn btn float-left" title="Collapse">
                 <i class="fas fa-null" >Cancel</i>
@@ -159,7 +145,8 @@ $('form').on('submit', function (e) {
         var data = JSON.parse(res);
         
         if(data.status == true) {
-          $('#modal-default').modal({'show' : true});
+          alert("Category change successfully");
+
           window.location.href = 'listcategory.php';
         } else {
           alert("Somethig went wrong !");

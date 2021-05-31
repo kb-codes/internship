@@ -88,47 +88,20 @@
 									if(mysqli_num_rows($select) > 0){
 										while($row = mysqli_fetch_array($select)){
 
-									echo "<tr>";
-									echo "<td>".$row['id']."</td>";
-									echo "<td>".$row['category_name']."</td>";
+										echo "<tr>";
+										echo "<td>".$row['id']."</td>";
+										echo "<td>".$row['category_name']."</td>";
 									?>
 										<td class="text-left py-0 align-middle">
 											<div class="btn-group btn-group-sm">
 
 
-												<a href="./updateCategory.php?category=<?php echo $row['category_name'] ?>&id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+												<a href="./updateCategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 												
-												<!--<a href="./api/deleteCategory.php?id=?php echo $row['id'] ?>" class="btn btn-danger">
-												<i class="fas fa-trash"></i></a> -->
-
-													
-												<a href="./api/deleteCategory.php?id=<?php echo $row['id'] ?>" class="btn btn-danger" data-target="#modal-default" data-toggle="modal">
-												<i class="fas fa-trash"></i></a> 
-																					
-																											
-												<div class="modal fade" id="modal-default">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 class="modal-title">Delete modal</h4>
-																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																	<span aria-hidden="true">&times;</span>
-																</button>
-															</div>
-															<div class="modal-body">
-																<p>Are you sure want to Delete &hellip;</p>
-															</div>
-															<div class="modal-footer justify-content-between">
-																<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-																<a href="./api/deleteCategory.php?id=<?php echo $row['id'] ?>"><button type="button" class="btn btn-primary"> Delete</button> </a>
-															</div>
-														</div>
-													</div>
-												</div>
+												<a href="./api/deleteCategory.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
+												<i class="fas fa-trash"></i></a>
 
 											</div>
-
-
 
 										</td>
 									<?php
