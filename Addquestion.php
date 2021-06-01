@@ -87,32 +87,32 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="inputDescription">Question</label>
-                                <textarea name="question" id="inputDescription" class="form-control" rows="4"></textarea>
+                                <label for="question">Question</label>
+                                <textarea name="question" id="question" class="form-control" rows="4"></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="inputName">Option A</label>
-                                <input type="text" name="op1" id="inputName" placeholder="option A" class="form-control">
+                                <label for="op1">Option A</label>
+                                <input type="text" name="op1" id="op1" placeholder="option A" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Option B</label>
-                                <input type="text" name="op2" id="inputName" placeholder="option B" class="form-control">
+                                <label for="op2">Option B</label>
+                                <input type="text" name="op2" id="op2" placeholder="option B" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Option C</label>
-                                <input type="text" name="op3" id="inputName" placeholder="option C" class="form-control">
+                                <label for="op3">Option C</label>
+                                <input type="text" name="op3" id="op3" placeholder="option C" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="inputName">Option D</label>
-                                <input type="text" name="op4" id="inputName" placeholder="option D" class="form-control">
+                                <label for="op4">Option D</label>
+                                <input type="text" name="op4" id="op4" placeholder="option D" class="form-control">
                             </div>
 
                             <div class="form-group">
-                                <label for="inputStatus">Answer</label>
-                                <select id="inputStatus" name="ans" class="form-control custom-select">
+                                <label for="ans">Answer</label>
+                                <select id="ans" name="ans" class="form-control custom-select">
                                     <option selected disabled>Select answer</option>
                                     <option>Option A</option>
                                     <option>Option B</option>
@@ -164,12 +164,58 @@
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script> -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-
-    <script>
+<script>
+// Wait for the DOM to be ready
+$(function() {
+  $("form[name='myForm']").validate({
+    // Specify validation rules
+    rules: {
+      category: "required",
+      question: "required",
+      op1: "required",
+      op2: "required",
+      op3: "required",
+      op4: "required",
+      ans: "required"
+    },
+    // Specify validation error messages
+    messages: {
+        category: "category is required",
+        question: "required",
+        op1: "required",
+        op2: "required",
+        op3: "required",
+        op4: "required",
+        ans: "required"
+    },
+    submitHandler: function(form) {
+        $.ajax({
+            type: 'post',
+            url: './api/addQuestion.php',
+            data: $('form').serialize(),
+            success: function (res) {
+                var data = JSON.parse(res);
+                
+                if(data.status == true) {
+            // $('#modal-default').modal({'show' : true});
+                alert("Question added successfully");
+                window.location.href = 'Addquestion.php';
+                } else {
+                alert("Something went wrong !");
+                }
+            }
+        });
+    }
+  });
+});
+</script>
+    <!-- <script>
 
         $(function () {
 
@@ -214,7 +260,7 @@
 
         });
 
-</script>
+</script> -->
 </body>
 
 </html>
