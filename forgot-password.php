@@ -55,6 +55,31 @@
 </div>
 <!-- /.login-box -->
 
+
+<div class="login-box">
+    <div class="login-logo">
+      <img src="assets/img/logo/logo.png" alt="Logo">
+      <b>Forgot</b>Password?
+    </div>
+    <div class="login-box-body">
+      <p class="login-box-msg">You can reset your password here.</p>
+      <form method="post" id="forgot_form">
+        <div class="form-group has-feedback">
+          <input type="email" class="form-control" placeholder="Email" name="email">
+          <span><i class="fa fa-envelope form-control-feedback"></i></span>
+        </div>      
+        <div class="row">
+          <div class="col-xs-6">
+            <a href="index.php">Back to Login</a><br>
+          </div>
+          <div class="col-xs-6">
+            <button type="submit" class="btn btn-primary btn-block btn-flat" name="submit" id="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
 <!-- jQuery -->
 <script src="./plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
