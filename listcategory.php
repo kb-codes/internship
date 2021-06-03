@@ -77,6 +77,7 @@
 									<tr>
 										<th>Category ID</th>
 										<th>Category Name</th>
+										<th>Category Image</th>
 										<th>Action</th>
 
 									</tr>
@@ -91,14 +92,15 @@
 										echo "<tr>";
 										echo "<td>".$row['id']."</td>";
 										echo "<td>".$row['category_name']."</td>";
+										echo "<td> <img src=./images/".$row['category_image']." height=100 width=100></img></td>";
 									?>
 										<td class="text-left py-0 align-middle">
 											<div class="btn-group btn-group-sm">
 
 
-												<a href="./updateCategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+												<a href="./addcategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 												
-												<a href="./api/deleteCategory.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
+												<a href="./core/deleteCategory.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
 												<i class="fas fa-trash"></i></a>
 
 											</div>

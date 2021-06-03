@@ -1,9 +1,9 @@
 <?php
-  include "config.php";
-  if(!isset($_SESSION['uname']))
-  {
-    header('location:login.php'); 
-  }
+    include "config.php";
+    if(!isset($_SESSION['uname']))
+    {
+        header('location:login.php'); 
+    }
 
 ?>
 <!DOCTYPE html>
@@ -58,15 +58,15 @@
                    <div class="card-header">    
                        <h2>Add Question </h2> 
                    </div>
-                   <form name="myForm">
+                   <form name="myForm" id="submitForm">
                     <div class="row card-body">
                     
                         
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputStatus">Category</label>
-                                <select id="inputStatus" name="category" id="category" class="form-control custom-select">
-                                    <option selected disabled>Select Category</option>
+                                <select id="inputStatus" name="category" id="category" class="form-control custom-select" required>
+                                    <option selected disabled value="">Select Category</option>
                                     <?php 
                                         include "config.php";
 
@@ -88,32 +88,32 @@
                             </div>
                             <div class="form-group">
                                 <label for="question">Question</label>
-                                <textarea name="question" id="question" class="form-control" rows="4"></textarea>
+                                <textarea name="question" id="question" class="form-control" rows="4" required></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="op1">Option A</label>
-                                <input type="text" name="op1" id="op1" placeholder="option A" class="form-control">
+                                <input type="text" name="op1" id="op1" placeholder="option A" class="form-control" required >
                             </div>
                             <div class="form-group">
                                 <label for="op2">Option B</label>
-                                <input type="text" name="op2" id="op2" placeholder="option B" class="form-control">
+                                <input type="text" name="op2" id="op2" placeholder="option B" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="op3">Option C</label>
-                                <input type="text" name="op3" id="op3" placeholder="option C" class="form-control">
+                                <input type="text" name="op3" id="op3" placeholder="option C" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="op4">Option D</label>
-                                <input type="text" name="op4" id="op4" placeholder="option D" class="form-control">
+                                <input type="text" name="op4" id="op4" placeholder="option D" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="ans">Answer</label>
-                                <select id="ans" name="ans" class="form-control custom-select">
-                                    <option selected disabled>Select answer</option>
+                                <select id="ans" name="ans" class="form-control custom-select" required>
+                                    <option selected disabled value="">Select answer</option>
                                     <option>Option A</option>
                                     <option>Option B</option>
                                     <option>Option C</option>
@@ -170,97 +170,39 @@
     <script src="dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
-<script>
-// Wait for the DOM to be ready
-$(function() {
-  $("form[name='myForm']").validate({
-    // Specify validation rules
-    rules: {
-      category: "required",
-      question: "required",
-      op1: "required",
-      op2: "required",
-      op3: "required",
-      op4: "required",
-      ans: "required"
-    },
-    // Specify validation error messages
-    messages: {
-        category: "category is required",
-        question: "required",
-        op1: "required",
-        op2: "required",
-        op3: "required",
-        op4: "required",
-        ans: "required"
-    },
-    submitHandler: function(form) {
+
+<script type="text/javascript">
+  $(document).ready(function(){
+	
+      $("#submitForm").on("submit", function(e){
+		
+        e.preventDefault();
         $.ajax({
             type: 'post',
-            url: './api/addQuestion.php',
+            url: 'core/addQuestion.php',
             data: $('form').serialize(),
+            cache:false,
+            processData: false,
             success: function (res) {
                 var data = JSON.parse(res);
                 
                 if(data.status == true) {
-            // $('#modal-default').modal({'show' : true});
                 alert("Question added successfully");
-                window.location.href = 'Addquestion.php';
-                } else {
-                alert("Something went wrong !");
+                window.location.href = 'Listquestion.php';
+                } 
+                else if(data.status == false){
+                alert("Database connectivity error !");
                 }
+                else{
+                    alert(data.status); 
+                }
+                
             }
         });
-    }
+      });
   });
-});
 </script>
-    <!-- <script>
-
-        $(function () {
-
-        $('form').on('submit', function (e) {
-            
-            e.preventDefault();
-            var a = document.forms["myForm"]["category"].value;
-            var b = document.forms["myForm"]["question"].value;
-            var c = document.forms["myForm"]["op1"].value;
-            var d = document.forms["myForm"]["op2"].value;
-            var e = document.forms["myForm"]["op3"].value;
-            var f = document.forms["myForm"]["op4"].value;
-            var g = document.forms["myForm"]["ans"].value;
-            if (b == "",c=="",d=="",e=="",f=="") {
-                
-                alert("All fields must be filled out !");
-                return false;
-            }
-            else
-            {
-                
-                $.ajax({
-                    type: 'post',
-                    url: './api/addQuestion.php',
-                    data: $('form').serialize(),
-                    success: function (res) {
-                        var data = JSON.parse(res);
-                        
-                        if(data.status == true) {
-                    // $('#modal-default').modal({'show' : true});
-                        alert("Question added successfully");
-                        window.location.href = 'Addquestion.php';
-                        } else {
-                        alert("Something went wrong !");
-                        }
-                    }
-                });
-            }
-            
-
-            });
-
-        });
-
-</script> -->
+    
 </body>
 
 </html>

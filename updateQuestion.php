@@ -67,15 +67,15 @@
                    <div class="card-header">    
                        <h2>Add Question </h2> 
                    </div>
-                   <form>
+                   <form id="submitForm">
                     <div class="row card-body">
                     
                         
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputStatus">Category</label>
-                                <select id="inputStatus" name="category" class="form-control custom-select">
-                                    <option selected disabled>Select Category</option>
+                                <select id="inputStatus" name="category" class="form-control custom-select" required>
+                                    <option selected disabled value="">Select Category</option>
                                     <?php 
 
                                         $query="SELECT * FROM `category`";
@@ -100,32 +100,32 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputDescription">Question</label>
-                                <textarea name="question" id="inputDescription" class="form-control" rows="4"><?php echo $fetch['question'] ?></textarea>
+                                <textarea name="question" id="inputDescription" class="form-control" rows="4" required><?php echo $fetch['question'] ?></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputName">Option A</label>
-                                <input type="text" value="<?php echo $fetch['op1'] ?>" name="op1" id="inputName" placeholder="option A" class="form-control">
+                                <input type="text" value="<?php echo $fetch['op1'] ?>" name="op1" id="inputName" placeholder="option A" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Option B</label>
-                                <input type="text" value="<?php echo $fetch['op2'] ?>" name="op2" id="inputName" placeholder="option B" class="form-control">
+                                <input type="text" value="<?php echo $fetch['op2'] ?>" name="op2" id="inputName" placeholder="option B" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Option C</label>
-                                <input type="text" value="<?php echo $fetch['op3'] ?>" name="op3" id="inputName" placeholder="option C" class="form-control">
+                                <input type="text" value="<?php echo $fetch['op3'] ?>" name="op3" id="inputName" placeholder="option C" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Option D</label>
-                                <input type="text" value="<?php echo $fetch['op4'] ?>" name="op4" id="inputName" placeholder="option D" class="form-control">
+                                <input type="text" value="<?php echo $fetch['op4'] ?>" name="op4" id="inputName" placeholder="option D" class="form-control" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputStatus">Answer</label>
-                                <select id="inputStatus" name="ans" class="form-control custom-select">
-                                    <option selected disabled>Select answer</option>
+                                <select id="inputStatus" name="ans" class="form-control custom-select" required>
+                                    <option selected disabled value="">Select answer</option>
                                     <option <?php if($fetch['ans'] == "Option A") { echo "selected"; } ?>>Option A</option>
                                     <option <?php if($fetch['ans'] == "Option B") { echo "selected"; } ?>>Option B</option>
                                     <option <?php if($fetch['ans'] == "Option C") { echo "selected"; } ?>>Option C</option>
@@ -180,32 +180,36 @@
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
 
-    <script>
-
-        $(function () {
-
-        $('form').on('submit', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'post',
-                url: './api/addQuestion.php',
-                data: $('form').serialize(),
-                success: function (res) {
-                    var data = JSON.parse(res);
-                    
-                    if(data.status == true) {
-                    alert("Question change successfully");
-                    window.location.href = 'Listquestion.php';
-                    } else {
-                    alert("Something went wrong !");
-                    }
+<script type="text/javascript">
+  $(document).ready(function(){
+	
+      $("#submitForm").on("submit", function(e){
+		
+        e.preventDefault();
+        $.ajax({
+            type: 'post',
+            url: 'core/addQuestion.php',
+            data: $('form').serialize(),
+            cache:false,
+            processData: false,
+            success: function (res) {
+                var data = JSON.parse(res);
+                
+                if(data.status == true) {
+                alert("Question change successfully");
+                window.location.href = 'Listquestion.php';
+                } 
+                else if(data.status == false){
+                alert("Database connectivity error !");
                 }
-            });
-
-            });
-
+                else{
+                    alert(data.status); 
+                }
+                
+            }
         });
-
+      });
+  });
 </script>
 </body>
 

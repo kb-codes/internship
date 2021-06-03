@@ -126,7 +126,7 @@
                       <div class="btn-group btn-group-sm">
                       <a href="./updateQuestion.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 												
-												<a href="./api/deleteQuestion.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
+												<a href="./core/deleteQuestion.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
 												<i class="fas fa-trash"></i></a>
 
                      </div>

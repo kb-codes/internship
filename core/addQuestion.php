@@ -8,9 +8,26 @@
     $op3 = $_POST['op3'];
     $op4 = $_POST['op4'];
     $ans = $_POST['ans'];
-    
-    if(isset($_POST['token']))
+    $query = "SELECT `question` FROM `questions` WHERE `question`='$question'";
+    $sel=mysqli_query($con,$query);
+    if(mysqli_num_rows($sel)>0)
     {
+        $fetch = mysqli_fetch_array($sel);
+        if($fetch['question']==$question)
+        {
+            $return['status'] = "This Question is already added !";
+            echo json_encode($return);
+        }
+        else
+        {
+
+        }
+        
+    }
+    else
+    {
+        if(isset($_POST['token']))
+        {
         $id = $_POST['token'];
         $query="UPDATE `questions` SET `question`='$question',`category`='$category',`op1`='$op1',`op2`='$op2',`op3`='$op3',`op4`='$op4',`ans`='$ans' WHERE id = '$id'";
         
@@ -30,9 +47,18 @@
     }
     else
     {
-        $query="INSERT INTO `questions` VALUES ('','$question','$category','$op1','$op2','$op3','$op4','$ans')";
+        $query = "SELECT `question` FROM `questions` WHERE `question`='$question'";
+        $sel=mysqli_query($con,$query);
+        if(mysqli_num_rows($sel)>0)
+        {
+            $return['status'] = "This Question is already added !";
+            echo json_encode($return);
+        }
+        else
+        {
+            $query="INSERT INTO `questions` VALUES ('','$question','$category','$op1','$op2','$op3','$op4','$ans')";
         
-        $select=mysqli_query($con,$query);
+            $select=mysqli_query($con,$query);
 
             if($select)
             {
@@ -44,7 +70,14 @@
                 $return['status'] = false;
                 echo json_encode($return); 
             }
+
+        }
+        
     }
+
+    }
+    
+    
 
    
         

@@ -2,7 +2,15 @@
   include "config.php";
   if(!isset($_SESSION['uname']))
   {
-    header('location:login.php'); 
+	header('location:login.php'); 
+  }
+  if(isset($_GET['id']))
+  {
+    $id = $_GET['id'];
+    $query="SELECT * FROM `category` WHERE id='$id'";
+
+	$sel=mysqli_query($con,$query);
+    $fetch = mysqli_fetch_array($sel);
   }
 
 ?>
@@ -31,86 +39,94 @@
 <body class="hold-transition sidebar-mini">
 
   <?php 
-      include("Navbar.php");
+	  include("Navbar.php");
   ?>
 
 
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-         
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-left">
-              <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-              
-              <li class="breadcrumb-item active">Add Category</li>
-            </ol>
-          </div>  
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+	  <div class="container-fluid">
+		<div class="row mb-2">
+		 
+		  <div class="col-sm-6">
+			<ol class="breadcrumb float-left">
+			  <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+			  
+			  <li class="breadcrumb-item active">Add Category</li>
+			</ol>
+		  </div>  
+		</div>
+	  </div><!-- /.container-fluid -->
+	</section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="raw">
-        <div class="col-200">
-         
-      </div>
-      
-           <div class="card card-info">
-          
-            <div class="card-header">
-              
-              
-                  <h2 class="float-left">Add Category</h2>
-                  
-                  <div class="card-tools">
-                      
-                  </div>
-                  
-                  
-            </div>
-            <form method="post" name="myForm">
-            <div class="card-body">
-              <div class="form-group">
-                <label for="inputName">Category Name</label>
-                <input type="text" value="<?php if(isset($_GET['category'])){ echo $_GET['category']; } ?>" name="project_name" id="project_name" class="form-control">
-              </div>
-              <?php 
-              if(isset($_GET['id']))
-              {
-                  echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
-              }
-              ?>
-                <button type="submit"  value="add" class="btn btn-success float-left" data-toggle="modal" title="Collapse">
-                  <i class="fas fa-null">Submit</i>
-                </button>
-            </form>                   
-                 
-                <button type="button" style="margin-left: 10px" value="add" class="btn btn float-left" title="Collapse">
-                <i class="fas fa-null" >Cancel</i>
-                </button>
-            </div>
-            
-      </div>
+	<!-- Main content -->
+	<section class="content">
+	  <div class="raw">
+		<div class="col-200">
+		 
+	  </div>
+	  
+		   <div class="card card-info">
+		  
+			<div class="card-header">
+			  
+			  
+				  <h2 class="float-left">Add Category</h2>
+				  
+				  <div class="card-tools">
+					  
+				  </div>
+				  
+				  
+			</div>
+			<form method="post" name="myForm" id="submitForm" enctype="multipart/form-data">
+			<div class="card-body">
+			  <div class="form-group">
+				<label for="inputName">Category Name</label>
+				<input type="text" value="<?php if(isset($_GET['id'])){ echo $fetch['category_name']; } ?>" name="project_name" id="project_name" class="form-control" required>
+			  </div>
+			  <?php 
+			  if(isset($_GET['id']))
+			  {
+				  echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
+			  }
+			  ?>
+			  	<div class="form-group">
+					<label for="category_image">Category Image</label>
+					<input type="file" name="uploadfile" id="uploadfile" required/>
+					<br />
+					<div id="uploaded_image"></div>
+				</div>
+				
+                                    
+				<button type="submit"  value="add" class="btn btn-success float-left" data-toggle="modal" title="Collapse">
+				  <i class="fas fa-null">Submit</i>
+				</button>
+			</form>                   
+				 
+				<button onClick="window.location.href = 'listcategory.php'" type="button" style="margin-left: 10px" value="add" class="btn btn float-left" title="Collapse">
+				<i class="fas fa-null" >Cancel</i>
+				</button>
+			</div>
+			
+	  </div>
 
-    </section>
-    <!-- /.content -->
+	</section>
+	<!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://arkayapps.com/">Arkay apps</a>.</strong> All rights reserved.
+	<div class="float-right d-none d-sm-block">
+	  <b>Version</b> 3.1.0
+	</div>
+	<strong>Copyright &copy; 2014-2021 <a href="https://arkayapps.com/">Arkay apps</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
+	<!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
 </div>
@@ -125,44 +141,40 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-<script>
+<!---jQuery ajax file upload --->
+<script type="text/javascript">
+  $(document).ready(function(){
+	
+      $("#submitForm").on("submit", function(e){
+		
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+          url  : "core/addCategory.php",
+          type : "POST",
+          cache:false,
+          data :formData,
+          contentType : false, // you can also use multipart/form-data replace of false
+          processData: false,
+          success:function(res){
+			
+			var data = JSON.parse(res);
+			if(data.status == true) {
+			  alert("Category added successfully !");
+			  window.location.href = 'listcategory.php';
+			}
+			else if(data.status==false){
+				alert("Errror !");
+			}
+			else
+			{
+				alert(data.status);
+			}
 
-$(function () {
-
-$('form').on('submit', function (e) {
-  var x = document.forms["myForm"]["project_name"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
-  }
-  else
-  {
-      $.ajax({
-      type: 'post',
-      url: './api/addCategory.php',
-      data: $('form').serialize(),
-        success: function (res) {
-            var data = JSON.parse(res);
-            
-            if(data.status == true) {
-              alert("Category added successfully !");
-              window.location.href = 'listcategory.php';
-            } else {
-              alert("Somethig went wrong !");
-            }
-        }
+          }
+        });
       });
-  }
-  
-  e.preventDefault();
-
-  
-
-});
-
-});
-
+  });
 </script>
-
 </body>
 </html>
