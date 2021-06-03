@@ -15,38 +15,36 @@
   <link rel="stylesheet" href="./dist/css/adminlte.min.css">
 
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background: -webkit-gradient(linear, left top, left bottom, from(#1791ff), to(#001f3b)) fixed; ">
 <div class="login-box">
-  <div class="login-logo">
-  <b>GK</b>Gujarati
-  </div>
+    <div class="login-logo">  
+      <img src="./images/logo.png" style="width:100px;" alt="Logo"><br>
+      <b>Forgot Password?</b>
+    </div>
+  
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+      <p class="login-box-msg">You can reset your password here.</p>
 
       <form method="post" id="form">
         
-        <div class="input-group mb-3">
-          <input name="pass1" type="password" class="form-control" placeholder="New Password">
-          <div class="input-group-append">
+      <div class="input-group mb-3">
+           <input name="Email" type="Email" class="form-control" placeholder="Email">
+            <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span class="fas fa-envelope"></span>
             </div>
           </div>
-        </div>
-        <div class="input-group mb-3">
-          <input name="pass2" type="password" class="form-control" placeholder="Confirm Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
+      </div>  
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" id="submit" class="btn btn-primary ">Submit</button>
-          </div>
+      <div>
+        <a href="login.php">Back to login </a>
+        <a href="#" class="btn btn-primary float-right">Submit</a>
+      </div>
+              
+             
+        </div>
           <!-- /.col -->
         </div>
       </form>
@@ -56,29 +54,6 @@
 <!-- /.login-box -->
 
 
-<div class="login-box">
-    <div class="login-logo">
-      <img src="assets/img/logo/logo.png" alt="Logo">
-      <b>Forgot</b>Password?
-    </div>
-    <div class="login-box-body">
-      <p class="login-box-msg">You can reset your password here.</p>
-      <form method="post" id="forgot_form">
-        <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email" name="email">
-          <span><i class="fa fa-envelope form-control-feedback"></i></span>
-        </div>      
-        <div class="row">
-          <div class="col-xs-6">
-            <a href="index.php">Back to Login</a><br>
-          </div>
-          <div class="col-xs-6">
-            <button type="submit" class="btn btn-primary btn-block btn-flat" name="submit" id="submit">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
 
 <!-- jQuery -->
 <script src="./plugins/jquery/jquery.min.js"></script>
