@@ -20,7 +20,8 @@
               <!-- User image -->
               <li class="user-header">
                   <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-
+              <div>    Elbert murrio
+              </div>
               </li>
               
               <!-- Menu Footer-->
@@ -76,13 +77,13 @@
                     <i class="fa fa-angle-left right"></i>
               </a>
               <ul class="nav nav-treeview"> 
-                  <li class=" nav-item">
+                  <li class="nav-item">
                     <a href="list_othercategory.php" class="<?php if($page == 'list_othercategory.php'): echo 'nav-link active'; endif; ?> nav-link"> 
                      
                       <p>List category</p>
                     </a>
                   </li>
-                  <li class=" nav-item">
+                  <li class="nav-item">
                     <a href="add_othercategory.php" class="<?php if($page == 'add_othercategory.php'): echo 'nav-link active'; endif; ?> nav-link"> 
                     
                       <p>Add category</p>
@@ -93,7 +94,7 @@
 
               <li class="nav-item <?php if($page == 'listcategory.php' OR $page == 'addcategory.php'): echo 'menu-open'; endif; ?>">
                 <a href="#" class="nav-link"> 
-                    <i class="fas fa-object-ungroup"></i>
+                    <i class="fas fa-list"></i>
                     <span>&nbsp;Category</span>
                     <i class="fa fa-angle-left right"></i>
                 </a>
