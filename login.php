@@ -15,10 +15,10 @@
   <link rel="stylesheet" href="./dist/css/adminlte.min.css">
 
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background: -webkit-gradient(linear, left top, left bottom, from(#1791ff), to(#001f3b)) fixed;">
 <div class="login-box">
   <div class="login-logo">
-  <b>GK</b>Gujarati
+  <b>GK in Gujarati </b>
   </div>
   <!-- /.login-logo -->
   <div class="card">

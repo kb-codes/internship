@@ -157,8 +157,8 @@
           contentType : false, // you can also use multipart/form-data replace of false
           processData: false,
           success:function(res){
-			
 			var data = JSON.parse(res);
+			
 			if(data.status == true) {
 			  alert("Category added successfully !");
 			  window.location.href = 'listcategory.php';
