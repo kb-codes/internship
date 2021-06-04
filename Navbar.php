@@ -67,27 +67,7 @@
                   </a>
               </li>
 
-              <li class="nav-item <?php if($page == 'level_list.php' OR $page == 'add_level.php'): echo 'menu-open active'; endif; ?>">
-              <a href="home.php" class="nav-link" <?php if($page == 'home.php'): echo 'active'; endif; ?>> 
-                  <i class="fas fa-angle-left fa fa-language"></i>
-                  <span>&nbsp;Level</span>
-                    <i class="fa fa-angle-left right"></i>
-              </a>
-              <ul class="nav nav-treeview"> 
-                  <li class=" nav-item">
-                    <a href="level_list.php" class="<?php if($page == 'level_list.php'): echo 'nav-link active'; endif; ?> nav-link"> 
-                    <i class="nav-icon"></i>
-                      <p>Level List</p>
-                    </a>
-                  </li>
-                  <li class=" nav-item">
-                    <a href="add_level.php" class="<?php if($page == 'add_level.php'): echo 'nav-link active'; endif; ?> nav-link"> 
-                     
-                      <p>Level Add</p>
-                  </a>
-                  </li>
-               </ul>
-              </li>
+              
               
               <li class="nav-item <?php if($page == 'list_othercategory.php' OR $page == 'add_othercategory.php'): echo 'menu-open active'; endif; ?>">
               <a href="#" class="nav-link"> 
