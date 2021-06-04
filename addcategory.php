@@ -86,19 +86,20 @@
 				<label for="inputName">Category Name</label>
 				<input type="text" value="<?php if(isset($_GET['id'])){ echo $fetch['category_name']; } ?>" name="project_name" id="project_name" class="form-control" required>
 			  </div>
-			  <?php 
-			  if(isset($_GET['id']))
-			  {
-				if (!empty($fetch['category_image'])) 
-				{
-					echo "<img src=./images/".$fetch['category_image']." height=100 width=100></img>";
-				} 
-                    
-				echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
-			  }
-			  ?>
+			
 			  	<div class="form-group">
 					<label for="category_image">Category Image</label><br>
+					<?php 
+					if(isset($_GET['id']))
+					{
+					if (!empty($fetch['category_image'])) 
+					{
+						echo "<img src=./images/".$fetch['category_image']." height=100 width=100></img>";
+					} 
+											
+					echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
+					}
+					?><br>
 					<input type="file" name="uploadfile" id="uploadfile" <?php if(!isset($_GET['id'])){echo "required";} ?> />
 					<br>
 					<div id="uploaded_image"></div>
