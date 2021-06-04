@@ -6,7 +6,7 @@
   {
     header('location:login.php'); 
   }
-  $query="SELECT * FROM `questions`";
+  $query="SELECT * FROM ".TBL_QUESTIONS;
       
   $select=mysqli_query($con,$query);
 
@@ -109,7 +109,7 @@
                   echo "<td>".$row['id']."</td>";
                   echo "<td>".$row['question']."</td>";
                   $id = $row['category'];
-                  $cat="SELECT * FROM `category` WHERE id='$id'";
+                  $cat="SELECT * FROM ".TBL_CATEGORY." WHERE id='$id'";
       
                   $sel=mysqli_query($con,$cat);
                   $data = mysqli_fetch_array($sel);  

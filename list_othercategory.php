@@ -7,7 +7,7 @@
 		header('location:login.php');
 	}
 
-	$query="SELECT * FROM `other_category`";
+	$query="SELECT * FROM ".TBL_OTHER_CATEGORY;
 
 	$select=mysqli_query($con,$query);
 

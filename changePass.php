@@ -5,7 +5,7 @@
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
 
-        $query="UPDATE `$table` SET `password`='$pass1' WHERE 1";
+        $query="UPDATE ".TBL_ADMIN." SET `password`='$pass1' WHERE 1";
 
         if($pass1 == $pass2)
         {

@@ -68,9 +68,8 @@
                                 <select id="inputStatus" name="category" id="category" class="form-control custom-select" required>
                                     <option selected disabled value="">Select Category</option>
                                     <?php 
-                                        include "config.php";
 
-                                        $query="SELECT * FROM `other_category` WHERE `category_type`='General Knowledge'";
+                                        $query="SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE `category_type`='General Knowledge'";
                                             
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)

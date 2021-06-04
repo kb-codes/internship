@@ -9,7 +9,7 @@
     if(isset($_GET['id']))
     {
         $id = $_GET['id'];
-        $query = "SELECT * FROM `current_affairs` WHERE id = '$id'";
+        $query = "SELECT * FROM ".TBL_CA." WHERE id = '$id'";
         $sel = mysqli_query($con,$query);
         $fetch= mysqli_fetch_array($sel);
     }
@@ -67,7 +67,7 @@
                    <div class="card-header">    
                        <h2>Add Current Affair </h2> 
                    </div>
-                   <form id="submitForm">
+                   <form id="submitForm" id="submitForm">
                     <div class="row card-body">
                     
                         
@@ -78,7 +78,7 @@
                                     <option selected disabled value="">Select Category</option>
                                     <?php 
 
-                                        $query="SELECT * FROM `other_category` WHERE `category_type`='Current Affair'";
+                                        $query="SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE `category_type`='Current Affair'";
                                                                                     
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)
@@ -139,13 +139,13 @@
                             </div>
 
                             
-                                <input type="hidden" name="token" value="<?php echo $fetch['id'] ?>"/>
+                            <input type="hidden" name="token" id="token" value="<?php echo $fetch['id'] ?>"/>
 
                                 <button type="submit" style="margin-left: -120px" class="btn btn-success float-center" data-toggle="modal-default" title="Collapse">
                                     <i class="fas fa-null">Submit</i>
                                 </button>  
                         
-                                <button onClick="window.location.href = 'list_othercategory.php'" type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
+                                <button onClick="window.location.href = 'list_current_affair.php'" type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
                                     <i class="fas fa-null" >Cancel</i>
                                 </button>
                             
@@ -202,7 +202,7 @@
                 
                 if(data.status == true) {
                 alert("Question change successfully");
-                window.location.href = 'Listquestion.php';
+                window.location.href = 'list_current_affair.php';
                 } 
                 else if(data.status == false){
                 alert("Database connectivity error !");

@@ -4,7 +4,7 @@ include "../config.php";
     if(isset($_GET["id"]))
     {
         $id = $_GET['id'];
-        $query="DELETE FROM `other_category` WHERE `id`='$id'";
+        $query="DELETE FROM ".TBL_OTHER_CATEGORY." WHERE `id`='$id'";
         
         $select=mysqli_query($con,$query);
 

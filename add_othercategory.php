@@ -7,7 +7,7 @@
   if(isset($_GET['id']))
   {
     $id = $_GET['id'];
-    $query="SELECT * FROM `other_category` WHERE id='$id'";
+    $query="SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE id='$id'";
 
 	$sel=mysqli_query($con,$query);
     $fetch = mysqli_fetch_array($sel);

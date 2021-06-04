@@ -5,13 +5,13 @@
     $title = $_POST['title'];
     $description = $_POST['description'];
        
-    $query = "SELECT * FROM `general_knowledge` WHERE `category`='$category' AND `description`='$description'";
+    $query = "SELECT * FROM ".TBL_GK." WHERE `category`='$category' AND `description`='$description'";
     $sel=mysqli_query($con,$query);
 
     if(isset($_POST['token']))
     {
         $token = $_POST['token'];
-        $q = "SELECT * FROM `general_knowledge` WHERE `title`='$title' AND `id` !='$token'";
+        $q = "SELECT * FROM ".TBL_GK." WHERE `title`='$title' AND `id` !='$token'";
         $select=mysqli_query($con,$q); 
         if(mysqli_num_rows($select)>0) 
         {
@@ -31,7 +31,7 @@
     
             if (move_uploaded_file($tempname, $folder))  
             {
-                $query="UPDATE `general_knowledge` SET `category`='$category',`title`='$title', `description`='$description',`image`='$fileNew' WHERE `id`='$token'";
+                $query="UPDATE ".TBL_GK." SET `category`='$category',`title`='$title', `description`='$description',`image`='$fileNew' WHERE `id`='$token'";
         
                 $select=mysqli_query($con,$query);
 
@@ -70,7 +70,7 @@
         
                 if (move_uploaded_file($tempname, $folder))  
                 {            
-                    $sql = "INSERT INTO `general_knowledge` VALUES ('','$category','$title','$description','$fileNew')";
+                    $sql = "INSERT INTO ".TBL_GK." VALUES ('','$category','$title','$description','$fileNew')";
                 
                     $sel=mysqli_query($con, $sql);
                     if($sel)

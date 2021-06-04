@@ -7,7 +7,7 @@
     if(isset($_GET['id']))
     {
         $id = $_GET['id'];
-        $query="SELECT * FROM `general_knowledge` WHERE id='$id'";
+        $query="SELECT * FROM ".TBL_GK." WHERE id='$id'";
 
         $sel=mysqli_query($con,$query);
         $fetch = mysqli_fetch_array($sel);
@@ -78,7 +78,7 @@
                                     <?php 
                                         include "config.php";
 
-                                        $query="SELECT * FROM `other_category` WHERE `category_type`='General Knowledge'";
+                                        $query="SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE `category_type`='General Knowledge'";
                                             
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)

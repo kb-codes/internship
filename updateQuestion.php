@@ -9,7 +9,7 @@
     if(isset($_GET['id']))
     {
         $id = $_GET['id'];
-        $query = "SELECT * FROM `questions` WHERE id = '$id'";
+        $query = "SELECT * FROM ".TBL_QUESTIONS." WHERE id = '$id'";
         $sel = mysqli_query($con,$query);
         $fetch= mysqli_fetch_array($sel);
     }
@@ -78,7 +78,7 @@
                                     <option selected disabled value="">Select Category</option>
                                     <?php 
 
-                                        $query="SELECT * FROM `category`";
+                                        $query="SELECT * FROM ".TBL_CATEGORY;
                                             
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)

@@ -7,7 +7,7 @@
 		header('location:login.php');
 	}
 
-	$query="SELECT * FROM `general_knowledge`";
+	$query="SELECT * FROM ".TBL_GK;
 
 	$select=mysqli_query($con,$query);
 
@@ -95,7 +95,7 @@
 										echo "<td>".$row['title']."</td>";
 										echo "<td>".$row['description']."</td>";
 											$id = $row['category'];
-											$cat="SELECT * FROM `other_category` WHERE id='$id'";
+											$cat="SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE id='$id'";
 								
 											$sel=mysqli_query($con,$cat);
 											$data = mysqli_fetch_array($sel);  

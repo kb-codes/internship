@@ -6,7 +6,7 @@
   {
     header('location:login.php'); 
   }
-  $query="SELECT * FROM `current_affairs`";
+  $query="SELECT * FROM ".TBL_CA;
       
   $select=mysqli_query($con,$query);
 
@@ -109,7 +109,7 @@
                   echo "<tr>";
                   echo "<td>".$row['id']."</td>";
                   $id = $row['category'];
-                  $cat="SELECT * FROM `other_category` WHERE id='$id'";
+                  $cat="SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE id='$id'";
       
                   $sel=mysqli_query($con,$cat);
                   $data = mysqli_fetch_array($sel);  
@@ -126,7 +126,7 @@
                       <div class="btn-group btn-group-sm">
                       <a href="./updateCurrentAffair.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 			          
-                      <a href="./core/deleteQuestion.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
+                      <a href="./core/deleteCurrentAffair.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
 					  <i class="fas fa-trash"></i></a>
 
                      </div>

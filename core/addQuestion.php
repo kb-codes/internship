@@ -8,13 +8,13 @@
     $op3 = $_POST['op3'];
     $op4 = $_POST['op4'];
     $ans = $_POST['ans'];
-    $query = "SELECT `question` FROM `questions` WHERE `question`='$question'";
+    $query = "SELECT `question` FROM ".TBL_QUESTIONS." WHERE `question`='$question'";
     $sel=mysqli_query($con,$query);
     
     if(isset($_POST['token']))
     {
         $id = $_POST['token'];
-        $query="UPDATE `questions` SET `question`='$question',`category`='$category',`op1`='$op1',`op2`='$op2',`op3`='$op3',`op4`='$op4',`ans`='$ans' WHERE id = '$id'";
+        $query="UPDATE ".TBL_QUESTIONS." SET `question`='$question',`category`='$category',`op1`='$op1',`op2`='$op2',`op3`='$op3',`op4`='$op4',`ans`='$ans' WHERE id = '$id'";
         
         $select=mysqli_query($con,$query);
 
@@ -39,7 +39,7 @@
         }
         else
         {
-            $query = "SELECT `question` FROM `questions` WHERE `question`='$question'";
+            $query = "SELECT * FROM ".TBL_QUESTIONS." WHERE `question`='$question'";
             $sel=mysqli_query($con,$query);
             if(mysqli_num_rows($sel)>0)
             {
@@ -48,7 +48,7 @@
             }
             else
             {
-                $query="INSERT INTO `questions` VALUES ('','$question','$category','$op1','$op2','$op3','$op4','$ans')";
+                $query="INSERT INTO ".TBL_QUESTIONS." VALUES ('','$question','$category','$op1','$op2','$op3','$op4','$ans')";
             
                 $select=mysqli_query($con,$query);
 

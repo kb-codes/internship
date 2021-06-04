@@ -6,7 +6,7 @@
     $pass = md5($_POST['password']);
 
 
-        $query="SELECT * FROM `$table` WHERE `username`='$name' and `password`='$pass'";
+        $query="SELECT * FROM ". TBL_ADMIN ." WHERE `username`='$name' and `password`='$pass'";
         
         $select=mysqli_query($con,$query);
 

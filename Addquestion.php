@@ -70,7 +70,7 @@
                                     <?php 
                                         include "config.php";
 
-                                        $query="SELECT * FROM `category`";
+                                        $query="SELECT * FROM ".TBL_CATEGORY;
                                             
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)
@@ -175,7 +175,6 @@
   $(document).ready(function(){
 	
       $("#submitForm").on("submit", function(e){
-		
         e.preventDefault();
         $.ajax({
             type: 'post',

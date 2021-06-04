@@ -7,7 +7,7 @@
     if(isset($_POST['token']))
     {
         $token = $_POST['token'];
-        $q = "SELECT * FROM `other_category` WHERE `category_name`='$category_name' AND `category_type`='$category_type' AND `id` !='$token'";
+        $q = "SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE `category_name`='$category_name' AND `category_type`='$category_type' AND `id` !='$token'";
         $select=mysqli_query($con,$q); 
         if(mysqli_num_rows($select)>0) 
         {
@@ -16,7 +16,7 @@
         }
         else
         {           
-            $query="UPDATE `other_category` SET `category_type`='$category_type',`category_name`='$category_name' WHERE `id`='$token'";
+            $query="UPDATE ".TBL_OTHER_CATEGORY." SET `category_type`='$category_type',`category_name`='$category_name' WHERE `id`='$token'";
     
             $update=mysqli_query($con,$query);
 
@@ -34,7 +34,7 @@
     }
     else
     {
-        $query = "SELECT * FROM `other_category` WHERE `category_name`='$category_name' AND `category_type`='$category_type'";
+        $query = "SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE `category_name`='$category_name' AND `category_type`='$category_type'";
         $sel=mysqli_query($con,$query);
     
         if(mysqli_num_rows($sel)>0)
@@ -44,7 +44,7 @@
         }
         else
         {           
-            $sql = "INSERT INTO `other_category` VALUES ('','$category_type','$category_name')";
+            $sql = "INSERT INTO ".TBL_OTHER_CATEGORY." VALUES ('','$category_type','$category_name')";
         
             $sel=mysqli_query($con, $sql);
             if($sel)

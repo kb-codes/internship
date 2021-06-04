@@ -69,7 +69,7 @@
                                     <?php 
                                         include "config.php";
 
-                                        $query="SELECT * FROM `other_category` WHERE `category_type`='Current Affair'";
+                                        $query="SELECT * FROM ".TBL_OTHER_CATEGORY." WHERE `category_type`='Current Affair'";
                                             
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)
@@ -128,7 +128,7 @@
                                 </button>                          
                                                 
                         
-                                <button onClick="window.location.href = 'list_othercategory.php'"  type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
+                                <button onClick="window.location.href = 'list_current_affair.php'"  type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
                                     <i class="fas fa-null" >Cancel</i>
                                 </button>
                             
