@@ -53,7 +53,7 @@
 			<ol class="breadcrumb float-left">
 			  <li class="breadcrumb-item"><a href="home.php">Home</a></li>
 			  
-			  <li class="breadcrumb-item active">Add Category</li>
+			  <li class="breadcrumb-item active">Update Category</li>
 			</ol>
 		  </div>  
 		</div>
@@ -72,7 +72,7 @@
 			<div class="card-header">
 			  
 			  
-				  <h2 class="float-left">Add Category</h2>
+				  <h2 class="float-left">Update Category</h2>
 				  
 				  <div class="card-tools">
 					  
@@ -94,6 +94,10 @@
 			  ?>
 			  	<div class="form-group">
 					<label for="category_image">Category Image</label><br>
+					<!--<img src="dist/img/avatar5.png"></img><br>-->
+					<?php if (!empty($result['category_image'])) { ?>
+                    <img src="./images/<?php echo $result['category_image']; ?>" alt="Category Image" width="10%">
+                    <?php } else { ?> <img src="./images/dummy-image.jpg" alt="Category Image" width="10%"> <?php } ?><br><br>
 					<input type="file" name="uploadfile" id="uploadfile" required/>
 					<br>
 					<div id="uploaded_image"></div>

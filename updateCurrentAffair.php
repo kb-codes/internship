@@ -52,7 +52,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="home.php">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Add Current Affair</li>
+                                <li class="breadcrumb-item active">Update Current Affair</li>
                             </ol>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
             <section class="content">
                 <div class="card card-info">
                    <div class="card-header">    
-                       <h2>Add Current Affair </h2> 
+                       <h2>Update Current Affair </h2> 
                    </div>
                    <form id="submitForm" id="submitForm">
                     <div class="row card-body">

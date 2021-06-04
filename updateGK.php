@@ -51,7 +51,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="home.php">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Add General Knowledge</li>
+                                <li class="breadcrumb-item active">Update General Knowledge</li>
                             </ol>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
             <section class="content">
                 <div class="card card-info">
                    <div class="card-header">    
-                       <h2>Add General Knowledge </h2> 
+                       <h2>Update General Knowledge </h2> 
                    </div>
                    <form name="myForm" id="submitForm" enctype="multipart/form-data">
                     <div class="row card-body">

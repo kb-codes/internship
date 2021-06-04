@@ -21,7 +21,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GK | List category
+    <title>GK | UpdateQuestion
 
     </title>
 
@@ -52,7 +52,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="home.php">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Add Question</li>
+                                <li class="breadcrumb-item active">Update Question</li>
                             </ol>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
             <section class="content">
                 <div class="card card-info">
                    <div class="card-header">    
-                       <h2>Add Question </h2> 
+                       <h2>Update Question </h2> 
                    </div>
                    <form id="submitForm">
                     <div class="row card-body">
