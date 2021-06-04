@@ -7,7 +7,7 @@
 		header('location:login.php');
 	}
 
-	$query="SELECT * FROM `category`";
+	$query="SELECT * FROM `other_category`";
 
 	$select=mysqli_query($con,$query);
 
@@ -91,15 +91,16 @@
 
 										echo "<tr>";
 										echo "<td>".$row['id']."</td>";
+										echo "<td>".$row['category_type']."</td>";
 										echo "<td>".$row['category_name']."</td>";
 									?>
 										<td class="text-left py-0 align-middle">
 											<div class="btn-group btn-group-sm">
 
 
-												<a href="./addcategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+												<a href="./add_othercategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 												
-												<a href="./core/deleteCategory.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
+												<a href="./core/deleteOtherCategory.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
 												<i class="fas fa-trash"></i></a>
 
 											</div>

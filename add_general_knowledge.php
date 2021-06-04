@@ -43,7 +43,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="home.php">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Add Question</li>
+                                <li class="breadcrumb-item active">Add General Knowledge</li>
                             </ol>
                         </div>
                     </div>
@@ -56,9 +56,9 @@
             <section class="content">
                 <div class="card card-info">
                    <div class="card-header">    
-                       <h2>Add Question </h2> 
+                       <h2>Add General Knowledge </h2> 
                    </div>
-                   <form name="myForm" id="submitForm">
+                   <form name="myForm" id="submitForm" enctype="multipart/form-data">
                     <div class="row card-body">
                     
                         
@@ -70,7 +70,7 @@
                                     <?php 
                                         include "config.php";
 
-                                        $query="SELECT * FROM `category`";
+                                        $query="SELECT * FROM `other_category` WHERE `category_type`='General Knowledge'";
                                             
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)
@@ -88,11 +88,11 @@
                             </div>
                             <div class="form-group">
                                     <label for="op1">Title</label>
-                                    <input type="text" name="" placeholder="Title" class="form-control" required >
+                                    <input type="text" name="title" id="title" placeholder="Title" class="form-control" required >
                             </div>
                             <div class="form-group">
-                                <label for="question">Question</label>
-                                <textarea name="question" id="question" class="form-control" rows="4" required></textarea>
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
                             </div>
                         </div>
 
@@ -103,11 +103,11 @@
                                     <br/>
                                     <div id="uploaded_image"></div>
                                 </div>
-                        </div>
+                            </div>
                                 <button type="submit" style="margin-left: 700px" class="btn btn-success float-center" data-toggle="modal-default" title="Collapse">
                                     <i class="fas fa-null">Submit</i>
                                  </button>                          
-                                 <button type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
+                                 <button onClick="window.location.href = 'list_general_knowledge.php'" type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
                                     <i class="fas fa-null" >Cancel</i>
                                 </button>
 
@@ -149,18 +149,20 @@
       $("#submitForm").on("submit", function(e){
 		
         e.preventDefault();
+        var formData = new FormData(this);
         $.ajax({
             type: 'post',
-            url: 'core/addQuestion.php',
-            data: $('form').serialize(),
+            url: 'core/addGK.php',
+            data: formData,
             cache:false,
+            contentType : false,
             processData: false,
             success: function (res) {
                 var data = JSON.parse(res);
                 
                 if(data.status == true) {
                 alert("Question added successfully");
-                window.location.href = 'Listquestion.php';
+                window.location.href = 'list_general_knowledge.php';
                 } 
                 else if(data.status == false){
                 alert("Database connectivity error !");

@@ -4,13 +4,13 @@ include "../config.php";
     if(isset($_GET["id"]))
     {
         $id = $_GET['id'];
-        $query="DELETE FROM `category` WHERE `id`='$id'";
+        $query="DELETE FROM `other_category` WHERE `id`='$id'";
         
         $select=mysqli_query($con,$query);
 
         if($select)
         {
-            header('location:../listcategory.php');                 
+            header('location:../list_othercategory.php');                 
         }
         else
         {

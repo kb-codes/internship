@@ -7,7 +7,7 @@
   if(isset($_GET['id']))
   {
     $id = $_GET['id'];
-    $query="SELECT * FROM `category` WHERE id='$id'";
+    $query="SELECT * FROM `other_category` WHERE id='$id'";
 
 	$sel=mysqli_query($con,$query);
     $fetch = mysqli_fetch_array($sel);
@@ -73,13 +73,15 @@
 					  <div class="card-tools">
 					  </div>
 			</div>
-			<form method="post" name="myForm" id="submitForm" enctype="multipart/form-data">
+			<form method="post" name="myForm" id="submitForm">
 			<div class="card-body">
 
 				<div class="form-group">
-        <label for="inputStatus">Category</label>
-					<select id="inputStatus" name="category" id="category" class="form-control custom-select" required>
+        		<label for="inputStatus">Category type</label>
+					<select id="inputStatus" name="category_type" id="category_type" class="form-control custom-select" required>
 						<option selected disabled value="">Select Category</option>
+						<option <?php if(isset($_GET['id'])){if($fetch['category_type'] == "Current Affair") { echo "selected"; }} ?>>Current Affair</option>
+						<option <?php if(isset($_GET['id'])){if($fetch['category_type'] == "General Knowledge") { echo "selected"; }} ?>>General Knowledge</option>
 					</select>
 				</div>
 
@@ -100,7 +102,7 @@
 				</button>
 			</form>                   
 				 
-				<button onClick="window.location.href = 'listcategory.php'" type="button" style="margin-left: 10px" value="add" class="btn btn float-left" title="Collapse">
+				<button onClick="window.location.href = 'list_othercategory.php'" type="button" style="margin-left: 10px" value="add" class="btn btn float-left" title="Collapse">
 				<i class="fas fa-null" >Cancel</i>
 				</button>
 			</div>
@@ -140,32 +142,31 @@
   $(document).ready(function(){
 	
       $("#submitForm").on("submit", function(e){
-		
         e.preventDefault();
         var formData = new FormData(this);
         $.ajax({
-          url  : "core/addCategory.php",
+          url  : "core/addOtherCategory.php",
           type : "POST",
           cache:false,
           data :formData,
-          contentType : false, // you can also use multipart/form-data replace of false
+          contentType : false,
           processData: false,
           success:function(res){
-						var data = JSON.parse(res);
+			var data = JSON.parse(res);
+			
+			if(data.status == true) {
+				alert("Category added successfully !");
+				window.location.href = 'list_othercategory.php';
+			}
+			else if(data.status==false){
+				alert("Errror !");
+			}
+			else
+			{
+				alert(data.status);
+			}
 
-						if(data.status == true) {
-							alert("Category added successfully !");
-							window.location.href = 'listcategory.php';
-						}
-						else if(data.status==false){
-							alert("Errror !");
-						}
-						else
-						{
-							alert(data.status);
-						}
-
-					}
+		}
         });
       });
   });

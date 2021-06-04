@@ -7,7 +7,7 @@
 		header('location:login.php');
 	}
 
-	$query="SELECT * FROM `category`";
+	$query="SELECT * FROM `general_knowledge`";
 
 	$select=mysqli_query($con,$query);
 
@@ -48,7 +48,7 @@
 					<div class="col-sm-6">
 						<ol class="breadcrumb float-left">
 							<li class="breadcrumb-item"><a href="home.php">Home</a></li>
-							<li class="breadcrumb-item active">list General Knowledge</li>
+							<li class="breadcrumb-item active">List General Knowledge</li>
 						</ol>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 				 <div class="card card-info">
 						<div class="card-header">
 
-									<h2 class="float-left">General Kowledge list</h2>
+									<h2 class="float-left">General Kowledge List</h2>
 
 									<a href="add_general_knowledge.php">  <button type="button"
 									class="btn btn-light float-right" title="Collapse"> <i class="fas fa-plus text-dark">Add GK</i> </button> </a>
@@ -79,7 +79,6 @@
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Category</th>
-                                        <th>Date</th>
                                         <th>Action</th>
                                     </tr>
 
@@ -92,16 +91,25 @@
 
 										echo "<tr>";
 										echo "<td>".$row['id']."</td>";
-										echo "<td>".$row['category_name']."</td>";
-										echo "<td> <img src=./images/".$row['category_image']." height=100 width=100></img></td>";
+										echo "<td> <img src=./images/gk/".$row['image']." height=100 width=100></img></td>";
+										echo "<td>".$row['title']."</td>";
+										echo "<td>".$row['description']."</td>";
+											$id = $row['category'];
+											$cat="SELECT * FROM `other_category` WHERE id='$id'";
+								
+											$sel=mysqli_query($con,$cat);
+											$data = mysqli_fetch_array($sel);  
+
+											echo "<td>".$data['category_name']."</td>";
+										
 									?>
 										<td class="text-left py-0 align-middle">
 											<div class="btn-group btn-group-sm">
 
 
-												<a href="./addcategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+												<a href="./updateGK.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 												
-												<a href="./core/deleteCategory.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
+												<a href="./core/deleteGK.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
 												<i class="fas fa-trash"></i></a>
 
 											</div>

@@ -4,6 +4,14 @@
     {
         header('location:login.php'); 
     }
+    if(isset($_GET['id']))
+    {
+        $id = $_GET['id'];
+        $query="SELECT * FROM `general_knowledge` WHERE id='$id'";
+
+        $sel=mysqli_query($con,$query);
+        $fetch = mysqli_fetch_array($sel);
+    }
 
 ?>
 <!DOCTYPE html>
@@ -40,9 +48,10 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-left">
-                                <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                                <li class="breadcrumb-item"><a href="list_current_affair.php">Current Affair List</a></li>
-                                <li class="breadcrumb-item active">Add Current Affair</li>
+                                <li class="breadcrumb-item">
+                                    <a href="home.php">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">Add General Knowledge</li>
                             </ol>
                         </div>
                     </div>
@@ -55,9 +64,9 @@
             <section class="content">
                 <div class="card card-info">
                    <div class="card-header">    
-                       <h2>Add Current Affair</h2> 
+                       <h2>Add General Knowledge </h2> 
                    </div>
-                   <form name="myForm" id="submitForm">
+                   <form name="myForm" id="submitForm" enctype="multipart/form-data">
                     <div class="row card-body">
                     
                         
@@ -69,14 +78,24 @@
                                     <?php 
                                         include "config.php";
 
-                                        $query="SELECT * FROM `other_category` WHERE `category_type`='Current Affair'";
+                                        $query="SELECT * FROM `other_category` WHERE `category_type`='General Knowledge'";
                                             
                                         $select=mysqli_query($con,$query);
                                         if(mysqli_num_rows($select) > 0)
                                         {
                                             while($row = mysqli_fetch_array($select))
                                             {
-                                                echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
+                                                    if($fetch['category'] == $row['id']) 
+                                                    {
+                                                        echo "<option value='".$row['id']."' selected>".$row['category_name']."</option>";
+
+                                                    }
+                                                    else
+                                                    {
+                                                        echo "<option value='".$row['id']."'>".$row['category_name']."</option>";
+                                                    }
+                                                
+                                                
                                             }
                                         }
 
@@ -86,57 +105,30 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="question">Question</label>
-                                <textarea name="question" id="question" class="form-control" rows="4" required></textarea>
+                                    <label for="title">Title</label>
+                                    <input type="text" value="<?php if(isset($_GET['id'])){ echo $fetch['title']; }  ?>" name="title" id="title" placeholder="Title" class="form-control" required >
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" class="form-control" rows="4" required><?php if(isset($_GET['id'])){ echo $fetch['description']; }  ?></textarea>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="op1">Option A</label>
-                                <input type="text" name="op1" id="op1" placeholder="option A" class="form-control" required >
+                        <input type='hidden' name='token' id="token" value="<?php echo $fetch['id']; ?>"/>
+                          
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="category_image">Image</label>  <br/>
+                                    <input type="file" name="uploadfile" id="uploadfile" required/>
+                                    <br/>
+                                    <div id="uploaded_image"></div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="op2">Option B</label>
-                                <input type="text" name="op2" id="op2" placeholder="option B" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="op3">Option C</label>
-                                <input type="text" name="op3" id="op3" placeholder="option C" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="op4">Option D</label>
-                                <input type="text" name="op4" id="op4" placeholder="option D" class="form-control" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ans">Answer</label>
-                                <select id="ans" name="ans" class="form-control custom-select" required>
-                                    <option selected disabled value="">Select answer</option>
-                                    <option>Option A</option>
-                                    <option>Option B</option>
-                                    <option>Option C</option>
-                                    <option>Option D</option>
-                                </select>
-                            </div>
-
-                            
-                                
-
-                                <button type="submit" style="margin-left: -120px" class="btn btn-success float-center" data-toggle="modal-default" title="Collapse">
+                                <button type="submit" style="margin-left: 700px" class="btn btn-success float-center" data-toggle="modal-default" title="Collapse">
                                     <i class="fas fa-null">Submit</i>
-                                </button>                          
-                                                
-                        
-                                <button onClick="window.location.href = 'list_othercategory.php'"  type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
+                                 </button>                          
+                                 <button onClick="window.location.href = 'list_general_knowledge.php'" type="button" style="margin-left: 10px" value="add" class="btn btn float-center" title="Collapse">
                                     <i class="fas fa-null" >Cancel</i>
                                 </button>
-                            
-                            </div>
-
-
-                        </div>
-                        
 
                       </div>
 
@@ -176,18 +168,19 @@
       $("#submitForm").on("submit", function(e){
 		
         e.preventDefault();
+        var formData = new FormData(this);
         $.ajax({
             type: 'post',
-            url: 'core/addCurrentAffair.php',
-            data: $('form').serialize(),
+            url: 'core/addGK.php',
+            data: formData,
             cache:false,
+            contentType : false,
             processData: false,
             success: function (res) {
                 var data = JSON.parse(res);
-                
                 if(data.status == true) {
                 alert("Question added successfully");
-                window.location.href = 'list_current_affair.php';
+                window.location.href = 'list_general_knowledge.php';
                 } 
                 else if(data.status == false){
                 alert("Database connectivity error !");

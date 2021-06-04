@@ -6,7 +6,7 @@
   {
     header('location:login.php'); 
   }
-  $query="SELECT * FROM `questions`";
+  $query="SELECT * FROM `current_affairs`";
       
   $select=mysqli_query($con,$query);
 
@@ -108,14 +108,13 @@
                       
                   echo "<tr>";
                   echo "<td>".$row['id']."</td>";
-                  echo "<td>".$row['question']."</td>";
                   $id = $row['category'];
-                  $cat="SELECT * FROM `category` WHERE id='$id'";
+                  $cat="SELECT * FROM `other_category` WHERE id='$id'";
       
                   $sel=mysqli_query($con,$cat);
                   $data = mysqli_fetch_array($sel);  
-
-                  echo "<td>".$data['category_name']."</td>";
+                  echo "<td>".$data['category_name']."</td>";    
+                  echo "<td>".$row['question']."</td>";
                   echo "<td>".$row['op1']."</td>";
                   echo "<td>".$row['op2']."</td>";
                   echo "<td>".$row['op3']."</td>";
@@ -125,7 +124,7 @@
                     
                     <td class="text-left py-0 align-middle">
                       <div class="btn-group btn-group-sm">
-                      <a href="./updateQuestion.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                      <a href="./updateCurrentAffair.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 			          
                       <a href="./core/deleteQuestion.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
 					  <i class="fas fa-trash"></i></a>
