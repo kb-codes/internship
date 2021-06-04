@@ -18,7 +18,8 @@
 <body class="hold-transition login-page" style="background: -webkit-gradient(linear, left top, left bottom, from(#1791ff), to(#001f3b)) fixed;">
 <div class="login-box">
   <div class="login-logo">
-  <b>GK in Gujarati </b>
+  <img src="./images/logo.png" style="width:100px;" alt="Logo"><br>
+  <b style="color:white;">GK in Gujarati </b>
   </div>
   <!-- /.login-logo -->
   <div class="card">

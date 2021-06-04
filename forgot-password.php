@@ -19,7 +19,7 @@
 <div class="login-box">
     <div class="login-logo">  
       <img src="./images/logo.png" style="width:100px;" alt="Logo"><br>
-      <b>Forgot Password?</b>
+      <b style="color:white;">Forgot Password?</b>
     </div>
   
   <!-- /.login-logo -->
