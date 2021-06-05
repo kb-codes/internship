@@ -118,11 +118,18 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="category_image">Image</label>  <br/>
-                                    <input type="file" name="uploadfile" id="uploadfile" required/>
+                                    <input type="file" name="uploadfile" id="uploadfile" />
                                     <br/>
                                     <div id="uploaded_image"></div>
+                                    <br/>
+                                    <div class="form-group">
+                                    <img src="./images/gk/<?php echo $fetch['image']; ?>" height=80 width=80></img>
+                                    <br/>
+                                </div>
                                 </div>
                             </div>
+                               
+                            
                                 <button type="submit" style="margin-left: 700px" class="btn btn-success float-center" data-toggle="modal-default" title="Collapse">
                                     <i class="fas fa-null">Submit</i>
                                  </button>                          

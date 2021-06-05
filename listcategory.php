@@ -98,7 +98,7 @@
 											<div class="btn-group btn-group-sm">
 
 
-												<a href="./updatecategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+												<a href="./addcategory.php?id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
 												
 												<a href="./core/deleteCategory.php?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger">
 												<i class="fas fa-trash"></i></a>

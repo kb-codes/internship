@@ -3,14 +3,21 @@
 include "../config.php";
     if(isset($_GET["id"]))
     {
-        $id = $_GET['id'];
-        $query="DELETE FROM ".TBL_CATEGORY." WHERE `id`='$id'";
-        
-        $select=mysqli_query($con,$query);
+        $token = $_GET['id'];
+        $image = "SELECT `category_image` FROM ".TBL_CATEGORY." WHERE `id`='$token'";
+        $sel=mysqli_query($con,$image);
+        $fetch=mysqli_fetch_array($sel);
+        $status=unlink("../images/".$fetch['category_image']);
 
-        if($select)
+        if($status)
         {
-            header('location:../listcategory.php');                 
+            $query="DELETE FROM ".TBL_CATEGORY." WHERE `id`='$token'";
+            $del=mysqli_query($con,$query);
+            if($del)
+            {
+                header('location:../listcategory.php');   
+            }
+                          
         }
         else
         {

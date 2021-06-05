@@ -89,12 +89,17 @@
 			  <?php 
 			  if(isset($_GET['id']))
 			  {
-				  echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
+				if (!empty($fetch['category_image'])) 
+				{
+					echo "<img src=./images/".$fetch['category_image']." height=100 width=100></img>";
+				} 
+                    
+				echo "<input type='hidden' name='token' value='".$_GET['id']."'/>";
 			  }
 			  ?>
 			  	<div class="form-group">
 					<label for="category_image">Category Image</label><br>
-					<input type="file" name="uploadfile" id="uploadfile" required/>
+					<input type="file" name="uploadfile" id="uploadfile" <?php if(!isset($_GET['id'])){echo "required";} ?> />
 					<br>
 					<div id="uploaded_image"></div>
 				</div>
@@ -157,6 +162,7 @@
           contentType : false, // you can also use multipart/form-data replace of false
           processData: false,
           success:function(res){
+			  
 			var data = JSON.parse(res);
 			
 			if(data.status == true) {

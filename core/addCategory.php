@@ -21,18 +21,46 @@
         else
         {
             $fileName = $_FILES['uploadfile']['name'];
-            $tempname = $_FILES["uploadfile"]["tmp_name"]; 
-            
-            $fileExt = explode('.', $fileName);
-            $fileActExt = strtolower(end($fileExt));
-            $allowImg = array('png','jpeg','jpg');
-            $fileNew = rand() . "." . $fileActExt;  // rand function create the rand number 
-            $folder = "../images/".$fileNew;
-    
-            if (move_uploaded_file($tempname, $folder))  
+            $tempname = $_FILES["uploadfile"]["tmp_name"];
+            if(!empty($fileName))
             {
-                $query="UPDATE ".TBL_CATEGORY." SET `category_name`='$category_name',`category_image`='$fileNew' WHERE `id`='$token'";
+                $image = "SELECT `category_image` FROM ".TBL_CATEGORY." WHERE `id`='$token'";
+                $sel=mysqli_query($con,$image);
+                $fetch=mysqli_fetch_array($sel);
+                $status=unlink("../images/".$fetch['category_image']);
+                if($status)
+                {
+                    $fileExt = explode('.', $fileName);
+                    $fileActExt = strtolower(end($fileExt));
+                    $allowImg = array('png','jpeg','jpg');
+                    $fileNew = rand() . "." . $fileActExt;  // rand function create the rand number 
+                    $folder = "../images/".$fileNew;
+            
+                    if (move_uploaded_file($tempname, $folder))  
+                    {
+                        $query="UPDATE ".TBL_CATEGORY." SET `category_name`='$category_name',`category_image`='$fileNew' WHERE `id`='$token'";
+                
+                        $select=mysqli_query($con,$query);
+
+                        if($select)
+                        {
+                            $return['status'] = true;
+                            echo json_encode($return); 
+                        }
+                        else
+                        {
+                            $return['status'] = false;
+                            echo json_encode($return); 
+                        }
+                    }
+                }             
+                
+            }
+            else
+            {
+                $query="UPDATE ".TBL_CATEGORY." SET `category_name`='$category_name' WHERE `id`='$token'";
         
+            
                 $select=mysqli_query($con,$query);
 
                 if($select)
@@ -45,8 +73,9 @@
                     $return['status'] = false;
                     echo json_encode($return); 
                 }
-            }
 
+            }                 
+                        
         }         
     }
     else

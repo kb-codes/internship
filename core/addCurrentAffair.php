@@ -14,7 +14,7 @@
     if(isset($_POST['token']))
     {
         $token = $_POST['token'];
-        $q = "SELECT * FROM ".TBL_CA." WHERE `category`='$category' AND `question`='$question' AND `id` !='$token'";
+        $q = "SELECT * FROM ".TBL_CA." WHERE `question`='$question' AND `id` !='$token'";
         $select=mysqli_query($con,$q); 
         if(mysqli_num_rows($select)>0) 
         {

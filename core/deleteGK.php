@@ -3,14 +3,22 @@
 include "../config.php";
     if(isset($_GET["id"]))
     {
-        $id = $_GET['id'];
-        $query="DELETE FROM ".TBL_GK." WHERE `id`='$id'";
+        $token = $_GET['id'];
+        $image = "SELECT `image` FROM ".TBL_GK." WHERE `id`='$token'";
+        $sel=mysqli_query($con,$image);
+        $fetch=mysqli_fetch_array($sel);
+        $status=unlink("../images/gk/".$fetch['image']);
         
-        $select=mysqli_query($con,$query);
 
-        if($select)
+        if($status)
         {
-            header('location:../list_general_knowledge.php');                 
+            $query="DELETE FROM ".TBL_GK." WHERE `id`='$token'";
+            $del=mysqli_query($con,$query);
+            if($del)
+            {
+                header('location:../list_general_knowledge.php');
+            }
+            
         }
         else
         {

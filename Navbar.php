@@ -20,7 +20,7 @@
               <!-- User image -->
               <li class="user-header">
                   <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-              <div>    Elbert murrio
+              <div>   Elon Musk
               </div>
               </li>
               
